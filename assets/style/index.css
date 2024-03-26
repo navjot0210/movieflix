@@ -32,6 +32,7 @@ h1, p {
 }
 
 header h1 {
+  margin-top: 40px;
   font-size: 9.4rem;
   font-weight: 600;
   line-height: 1;

@@ -62,19 +62,23 @@ function printMovies(text) {
 }
 
 function printSearch() {
-  const searchedText = searchInput.value.toLowerCase();
+  const searchedText = searchInput.value.trim().toLowerCase();
   if (validateSearchedText(searchedText)) {
+    searchesMatched.style.display = 'block';
     printMovies(searchedText);
+    button.disabled = false;
   } else {
     searchesMatched.innerHTML = '';
+    searchesMatched.style.display = 'none';
   }
 }
 
 button.addEventListener('click', () => {
   printSearch();
   searchInput.value = '';
-  searchesMatched.value = '';
   searchesMatched.style.display = 'none';
-}); 
+});
 
-searchInput.addEventListener('input', printSearch);
+searchInput.addEventListener('input', () => {
+  printSearch();
+});
