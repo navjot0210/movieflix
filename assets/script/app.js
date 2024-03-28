@@ -5,7 +5,7 @@ import movies from './movies.js';
 const searchInput = document.querySelector('.search-area');
 const button = document.querySelector('.search-button');
 const movieDetail = document.querySelector('.movie-detail');
-const searchesMatched = document.querySelector('.result-list');
+const searchesMatched = document.querySelector('.movie-list');
 
 function validateSearchedText(text) {
   return text.length > 2;
@@ -62,10 +62,10 @@ function printMovies(text) {
 }
 
 function printSearch() {
-  const searchedText = searchInput.value.trim().toLowerCase();
-  if (validateSearchedText(searchedText)) {
-    searchesMatched.style.display = 'block';
-    printMovies(searchedText);
+  const text = searchInput.value.trim().toLowerCase();
+  if (validateSearchedText(text)) {           
+    searchesMatched.style.display = 'block';  
+    printMovies(text);
     button.disabled = false;
   } else {
     searchesMatched.innerHTML = '';
@@ -73,10 +73,44 @@ function printSearch() {
   }
 }
 
+function fetchMovieDetail() {
+  const text = searchInput.value.toLowerCase();
+  const matchedMovies = findMovie(text);
+  if (matchedMovies.length > 0) {
+    movieDetail.innerHTML = '';
+    matchedMovies.forEach(movie => {
+      const movieHTML = displayMovieInfo(movie);
+      movieDetail.innerHTML += movieHTML;
+    });
+  } else {
+    movieDetail.innerHTML = ''; 
+  }
+}
+
+function displayMovieInfo(movie) {
+  return `
+      <div class="poster">
+        <div class="poster-img">
+        <img src="${movie.poster}" class="movie-poster" alt="${movie.title}">
+        </div>
+        <aside class="poster-text">
+          <h2 class="movie-title">${movie.title}</h2>
+          <div class="time">
+            <p class="release-year">${movie.year}</p>
+            <p class="run-time">${movie.runningTime}</p>
+          </div>
+          <p class="movie-text">${movie.description}</p>
+          <p class="movie-genre">${movie.genre.join('    ')}</p>
+        </aside>
+      </div>
+  `;
+}
+
 button.addEventListener('click', () => {
-  printSearch();
+  fetchMovieDetail();
   searchInput.value = '';
   searchesMatched.style.display = 'none';
+  searchesMatched.innerHTML = '';          
 });
 
 searchInput.addEventListener('input', () => {
