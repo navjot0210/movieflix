@@ -1,16 +1,17 @@
 @charset "utf-8";
 
 :root {
-  --background-color: rgb(24, 23, 32);
-  --font-lighter: rgb(255 255 255);
-  --font-light: rgb(255 255 255 / 0.9);
+  --background-color: rgb(24 23 32);
+  --font-light: rgb(255 255 255);
+  --border-radius: 4px;
 }
 
 body {
   background: var(--background-color);
-  /* display: flex;
-  align-items: center;
-  place-items: center; */
+}
+
+h1, p {
+  color: var(--font-light);
 }
 
 
@@ -21,37 +22,25 @@ body {
   width: 100%;
   height: 100dvh;
   position: absolute;
-  /* display: flex;
-  align-items: center;  */
-  justify-content: center;
 }
 
-h1, p {
-  color: #fff;
+header h1, header p {
   text-align: center;
 }
 
 header h1 {
-  margin-top: 40px;
-  font-size: 9.4rem;
+  margin-top: 80px;
+  font-size: 8.4rem;
   font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
 }
 
 header p {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
   text-align: center;
-  margin: 15px 0 25px;
-}
-
-.li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  font-size: 25px;
+  margin: 10px 0 25px;
 }
 
 /* --------------------------------------- */
@@ -61,23 +50,24 @@ form {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
 input {
   height: 54px;
   font-size: 20px;
   line-height: 42px;
-  color: #fff;
-  border-radius: 4px;
+  color: var(--font-light);
+  border-radius: var(--border-radius);
 }
 
 input[type=text] {
   width: 500px;
   padding: 0 14px;
+}
+
+input[type=text], .movie-list li, .movie-genre .genre {
   background-color: rgb(45 44 49);
-  border: 1px solid rgb(52, 50, 56);
-  /* position: relative; */
+  border: 1px solid rgb(52 50 56);
 }
 
 input[type=button] {
@@ -85,37 +75,36 @@ input[type=button] {
   margin-left: 10px;
   font-weight: 600;
   background-color: #2e83eb;
-  transition: all 0.3s ease-out;
+  border: 1px solid #2e83eb;
+  transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
 
 input[type=button]:hover {
   background-color: #1b6acc;
+  border: 1px solid #1b6acc;
 }
 
 .movie-list {
   width: 500px;
-  background-color: rgb(23 24 32);
-  border-radius: 4px;
   font-size: 20px;
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
   position: absolute;
-  top: 60px;
-  left: 441.5px;
-  border-radius: 4px;
+  top: 294px;
+  left: 46.2%;
+  transform: translateX(-50%);
 }
 
 .movie-list ul {
-  list-style: none;
-  color: #fff;
+  width: 100%;
 }
 
 .movie-list li {
-  list-style: none;
-  background-color: rgb(45 44 49);
-  border: 1px solid rgb(52, 50, 56);
-  color: #fff;
   padding: 10px;
-  /* border-radius: 4px; */
+  color: var(--font-light);
+  list-style: none;
+  cursor: pointer;
 }
 
 .movie-list li:not(.disabled):hover {
@@ -124,4 +113,80 @@ input[type=button]:hover {
 
 .movie-list li.disabled {
   pointer-events: none;
+}
+
+
+/* --------------------------------------- */
+/* Movie Details                           */
+/* --------------------------------------- */
+.movie-detail {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.poster {
+  margin: 60px 220px 0;
+  width: 850px;
+  display: flex;
+}
+
+.poster-img {
+  width: 25%;
+}
+
+.poster-img img {
+  height: 335px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgb(24, 24, 29);
+  box-shadow: 1px 1px 2px 1px rgb(24 24 29);
+}
+
+.poster-text {
+  padding-left: 25px;
+  width: 75%;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.movie-title {
+  margin-bottom: 4px;
+  font-size: 34px;
+  font-weight: 600;
+  color: var(--font-light);
+  line-height: 42px;
+}
+
+.time {
+  display: flex;
+  gap: 16px;
+}
+
+.time p {
+  color: rgb(135, 134, 134);
+}
+
+.release-year::after {
+  content: "|";
+  margin-left: 16px;
+  color: rgb(240 240 240 / 0.4);
+}
+.time, .movie-genre {
+  font-size: 18px;
+}
+
+.movie-text {
+margin: 20px 0 20px;
+}
+
+.movie-genre {
+  display: flex;
+}
+.movie-genre .genre {
+  padding: 6px 20px 8px;
+  border-radius: 22px;
+}
+
+.genre + .genre {
+  margin-left: 14px; 
 }

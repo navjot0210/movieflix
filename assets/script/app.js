@@ -20,7 +20,6 @@ function findMovie(text) {
 
 function displayMovies(matchedMovies) {
   searchesMatched.innerHTML = '';
-  
   if (matchedMovies.length > 0) {
     getMatchedMovies(matchedMovies);
   } else {
@@ -75,7 +74,15 @@ function printSearch() {
 
 function fetchMovieDetail() {
   const text = searchInput.value.toLowerCase();
-  const matchedMovies = findMovie(text);
+  let matchedMovies;
+  
+  if (text.trim() === '') {
+    matchedMovies = '';
+    movieDetail.innerHTML = '';
+  } else {
+    matchedMovies = findMovie(text);
+  }
+  
   if (matchedMovies.length > 0) {
     movieDetail.innerHTML = '';
     matchedMovies.forEach(movie => {
@@ -87,7 +94,12 @@ function fetchMovieDetail() {
   }
 }
 
+
 function displayMovieInfo(movie) {
+  let movieGenre = '';
+  movie.genre.forEach(genre => {
+      movieGenre += `<p class="genre" style="background-color: #24252D;">${genre}</p>`;
+  });
   return `
       <div class="poster">
         <div class="poster-img">
@@ -100,7 +112,7 @@ function displayMovieInfo(movie) {
             <p class="run-time">${movie.runningTime}</p>
           </div>
           <p class="movie-text">${movie.description}</p>
-          <p class="movie-genre">${movie.genre.join('    ')}</p>
+          <div class="movie-genre">${movieGenre}</div>
         </aside>
       </div>
   `;
