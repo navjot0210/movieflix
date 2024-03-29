@@ -63,6 +63,9 @@ input {
 input[type=text] {
   width: 500px;
   padding: 0 14px;
+}
+
+input[type=text], .movie-list li, .movie-genre .genre {
   background-color: rgb(45 44 49);
   border: 1px solid rgb(52 50 56);
 }
@@ -100,8 +103,6 @@ input[type=button]:hover {
 .movie-list li {
   padding: 10px;
   color: var(--font-light);
-  background-color: rgb(45 44 49);
-  border: 1px solid rgb(52 50 56);
   list-style: none;
   cursor: pointer;
 }
@@ -125,8 +126,8 @@ input[type=button]:hover {
 }
 
 .poster {
-  margin: 55px 220px 0;
-  width: 800px;
+  margin: 60px 220px 0;
+  width: 850px;
   display: flex;
 }
 
@@ -135,27 +136,57 @@ input[type=button]:hover {
 }
 
 .poster-img img {
-  height: 320px;
+  height: 335px;
   border-radius: var(--border-radius);
   border: 1px solid rgb(24, 24, 29);
   box-shadow: 1px 1px 2px 1px rgb(24 24 29);
 }
 
 .poster-text {
+  padding-left: 25px;
   width: 75%;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .movie-title {
+  margin-bottom: 4px;
   font-size: 34px;
   font-weight: 600;
   color: var(--font-light);
+  line-height: 42px;
 }
 
+.time {
+  display: flex;
+  gap: 16px;
+}
+
+.time p {
+  color: rgb(135, 134, 134);
+}
+
+.release-year::after {
+  content: "|";
+  margin-left: 16px;
+  color: rgb(240 240 240 / 0.4);
+}
 .time, .movie-genre {
   font-size: 18px;
 }
 
 .movie-text {
-  font-size: 20px;
-  font-weight: 500;
+margin: 20px 0 20px;
+}
+
+.movie-genre {
+  display: flex;
+}
+.movie-genre .genre {
+  padding: 6px 20px 8px;
+  border-radius: 22px;
+}
+
+.genre + .genre {
+  margin-left: 14px; 
 }

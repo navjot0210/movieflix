@@ -96,6 +96,10 @@ function fetchMovieDetail() {
 
 
 function displayMovieInfo(movie) {
+  let movieGenre = '';
+  movie.genre.forEach(genre => {
+      movieGenre += `<p class="genre" style="background-color: #24252D;">${genre}</p>`;
+  });
   return `
       <div class="poster">
         <div class="poster-img">
@@ -108,7 +112,7 @@ function displayMovieInfo(movie) {
             <p class="run-time">${movie.runningTime}</p>
           </div>
           <p class="movie-text">${movie.description}</p>
-          <p class="movie-genre">${movie.genre.join('    ')}</p>
+          <div class="movie-genre">${movieGenre}</div>
         </aside>
       </div>
   `;
