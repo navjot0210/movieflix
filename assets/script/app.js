@@ -1,11 +1,12 @@
 'use strict';
 
 import movies from './movies.js';
+import { select, listen, create } from './utils.js';
 
-const searchInput = document.querySelector('.search-area');
-const button = document.querySelector('.search-button');
-const movieDetail = document.querySelector('.movie-detail');
-const searchesMatched = document.querySelector('.movie-list');
+const searchInput = select('.search-area');
+const button = select('.search-button');
+const movieDetail = select('.movie-detail');
+const searchesMatched = select('.movie-list');
 
 function validateSearchedText(text) {
   return text.length > 2;
@@ -29,12 +30,12 @@ function displayMovies(matchedMovies) {
 
 function getMatchedMovies(matchedMovies) {
   const fivematchedMovies = matchedMovies.slice(0, 5);
-  const ul = document.createElement('ul');
+  const ul = create('ul');
 
   fivematchedMovies.forEach(movie => {
-    const li = document.createElement('li');
+    const li = create('li');
     li.textContent = movie.title;
-    li.addEventListener('click', function() {
+    listen('click', li, function() {
       searchInput.value = movie.title;
       printMovies(movie.title);
       searchesMatched.innerHTML = '';
@@ -94,7 +95,6 @@ function fetchMovieDetail() {
   }
 }
 
-
 function displayMovieInfo(movie) {
   let movieGenre = '';
   movie.genre.forEach(genre => {
@@ -118,13 +118,13 @@ function displayMovieInfo(movie) {
   `;
 }
 
-button.addEventListener('click', () => {
+listen('click', button, () => {
   fetchMovieDetail();
   searchInput.value = '';
   searchesMatched.style.display = 'none';
   searchesMatched.innerHTML = '';          
 });
 
-searchInput.addEventListener('input', () => {
+listen('input', searchInput, () => {
   printSearch();
 });
