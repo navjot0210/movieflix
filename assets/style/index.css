@@ -7,7 +7,7 @@
 }
 
 body {
-  background: var(--background-color);
+  background: var(--background-color) url(../img/background.jpg) center / cover no-repeat fixed;
 }
 
 h1, p {
