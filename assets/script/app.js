@@ -20,7 +20,6 @@ function findMovie(text) {
 
 function displayMovies(matchedMovies) {
   searchesMatched.innerHTML = '';
-  
   if (matchedMovies.length > 0) {
     getMatchedMovies(matchedMovies);
   } else {
@@ -75,7 +74,15 @@ function printSearch() {
 
 function fetchMovieDetail() {
   const text = searchInput.value.toLowerCase();
-  const matchedMovies = findMovie(text);
+  let matchedMovies;
+  
+  if (text.trim() === '') {
+    matchedMovies = '';
+    movieDetail.innerHTML = '';
+  } else {
+    matchedMovies = findMovie(text);
+  }
+  
   if (matchedMovies.length > 0) {
     movieDetail.innerHTML = '';
     matchedMovies.forEach(movie => {
@@ -86,6 +93,7 @@ function fetchMovieDetail() {
     movieDetail.innerHTML = ''; 
   }
 }
+
 
 function displayMovieInfo(movie) {
   return `
